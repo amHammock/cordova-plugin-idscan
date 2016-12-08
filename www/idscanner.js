@@ -9,8 +9,8 @@ module.exports = {
   scan: function(
       successCallback,  // called with a javascript object containing the driver license fields
       failureCallback,  // called with error message if scanning failed
-      cameraKey,        // activation key from IDScan.net for their iOS Camera Scanning SDK
-      parserKey         // activation key from IDScan.net for their iOS ID Parsing SDK
+      cameraKey,        // activation key from IDScan.net for their iOS or Android Camera Scanning SDK
+      parserKey         // activation key from IDScan.net for their iOS or Android ID Parsing SDK
       ) {
       if (typeof failureCallback != "function") {
           console.log("IdScannerPlugin ERROR: failureCallback is not a function");

@@ -9,7 +9,7 @@
     <license>MIT</license>
 
     <engines>
-        <engine name="cordova" version=">=3.0.0" />
+        <engine name="cordova" version=">=5.0.0" />
     </engines>
 
     <js-module src="www/idscanner.js" name="idscanner">
@@ -31,13 +31,13 @@
       </config-file>
       
       <source-file src="src/android/IDScanner.java" target-dir="src/com/dpms/idscan" />
-      <source-file src="src/android/dlparserlib.jar" target-dir="libs" />
-      <source-file src="src/android/armeabi/libidscan_parser.so" target-dir="libs/armeabi/" />
-      <source-file src="src/android/armeabi-v7a/libidscan_parser.so" target-dir="libs/armeabi-v7a/" />
-      <source-file src="src/android/x86/libidscan_parser.so" target-dir="libs/x86/" />
+      <source-file src="src/android/sdk/dlparserlib.jar" target-dir="libs" />
+      <source-file src="src/android/sdk/armeabi/libidscan_parser.so" target-dir="libs/armeabi/" />
+      <source-file src="src/android/sdk/armeabi-v7a/libidscan_parser.so" target-dir="libs/armeabi-v7a/" />
+      <source-file src="src/android/sdk/x86/libidscan_parser.so" target-dir="libs/x86/" />
       
       <framework src="src/android/build-scanner.gradle" custom="true" type="gradleReference" />
-      <resource-file src="src/android/PDF417Scanner.aar" target="libs/PDF417Scanner.aar" />    
+      <resource-file src="src/android/sdk/PDF417Scanner.aar" target="libs/PDF417Scanner.aar" />    
     </platform>
 
     <!-- ios -->
