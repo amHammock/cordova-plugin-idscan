@@ -4,8 +4,8 @@
         id="cordova-plugin-idscan"
         version="0.1.0">
 
-    <name>ID Scan</name>
-    <description>Plugin wrapping IDScan.net's iOS and Android id scanner SDK</description>
+    <name>IDScanner</name>
+    <description>Plugin wrapping IDScan.net's iOS and Android ID scanner/parser SDKs</description>
     <license>MIT</license>
 
     <engines>
