@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-idscan"
+        version="0.1.0">
+
+    <name>ID Scan</name>
+    <description>Plugin wrapping IDScan.net's iOS and Android id scanner SDK</description>
+    <license>MIT</license>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/idscanner.js" name="idscanner">
+        <clobbers target="IDScanner" />
+    </js-module>
+    
+    <!-- android -->
+    <platform name="android">     
+      <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="IDScanner">
+          <param name="android-package" value="com.dpms.idscan.IDScanner"/>
+        </feature>
+      </config-file>
+      
+      <config-file target="AndroidManifest.xml" parent="/*">
+          <uses-permission android:name="android.permission.CAMERA" />
+          <uses-feature android:name="android.hardware.camera" android:required="true" />
+          <uses-feature android:name="android.hardware.camera.autofocus" />
+      </config-file>
+      
+      <source-file src="src/android/IDScanner.java" target-dir="src/com/dpms/idscan" />
+      <source-file src="src/android/dlparserlib.jar" target-dir="libs" />
+      <source-file src="src/android/armeabi/libidscan_parser.so" target-dir="libs/armeabi/" />
+      <source-file src="src/android/armeabi-v7a/libidscan_parser.so" target-dir="libs/armeabi-v7a/" />
+      <source-file src="src/android/x86/libidscan_parser.so" target-dir="libs/x86/" />
+      
+      <framework src="src/android/build-scanner.gradle" custom="true" type="gradleReference" />
+      <resource-file src="src/android/PDF417Scanner.aar" target="libs/PDF417Scanner.aar" />    
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <info>
+          iOS extra steps to make this plugin work:
+          
+          You need to add BarcodeScanner.framework to the Embedded Binaries 
+          section of your Xcode project
+        </info>
+        
+        <config-file target="config.xml" parent="/*">
+            <feature name="IDScanner">
+                <param name="ios-package" value="IDScanner" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/IDScannerPlugin.h" />
+        <source-file src="src/ios/IDScannerPlugin.m" />
+
+        <header-file src="src/ios/ScannerViewController.h" />
+        <source-file src="src/ios/ScannerViewController.m" />
+        <framework src="src/ios/BarcodeScanner.framework" custom="true" />
+
+        <header-file src="src/ios/DriverLicenseParser.h" />
+        <source-file src="src/ios/libDriverLicenseParser.a" framework="true" />
+    </platform>
+
+</plugin>
