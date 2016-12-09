@@ -9,19 +9,23 @@ To install, simply clone the repository to a folder on your local machine and us
 
     cordova plugin add /path/to/local/copy/cordova-plugin-idscan
 
-The plugin is exposed to your Cordova project javascript code as the IDScanner object. Simply call the scan() function like so:
+The plugin is exposed to your Cordova javascript code as the IDScanner object. Simply call the scan() function like so:
 
+    //  
+    // for all fields available on the result object, refer to DriverLicenseParser.h in the iOS sdk
+    // e.g. firstName, lastName, birthdate, city, postalCode, licenseNumber, expirationDate, etc.
+    //
     function successCallback(result) {
       console.log("Successfully scanned ID for " + result.fullName);
-      // for all fields available on the result object, refer to DriverLicenseParser.h in the iOS sdk
-      // e.g. firstName, lastName, birthdate, city, postalCode, licenseNumber, expirationDate, etc.
-
+    }
 
     function errorCallback(errorMsg) {
       console.log(errorMsg);
     }
 
+    //
     // You must get valid license keys from IDScan.net for this to work
+    //
     IDScanner.scan(successCallback, errorCallback, cameraKey, scannerKey);
 
 If you need to update the SDK files from IDScan.net, you can just drop new ones in the sdk folders of the iOS and Android source.
