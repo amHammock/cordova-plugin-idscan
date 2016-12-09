@@ -1,10 +1,10 @@
-#import "IDScannerPlugin.h"
+#import "IDScanner.h"
 #import "ScannerViewController.h"
 #import "DriverLicenseParser.h"
 #import <Cordova/CDV.h>
 #import <AVFoundation/AVFoundation.h>
 
-@implementation IDScannerPlugin
+@implementation IDScanner
 @synthesize callbackId;
 @synthesize cameraKey;
 @synthesize parserKey;
@@ -22,8 +22,8 @@
     self.callbackId = command.callbackId;
 
     // BarcodeScanner sdk and DriverLicenseParser sdk require these activation codes
-    NSLog(@"IDScannerPlugin: cameraKey=%@",self.cameraKey);
-    NSLog(@"IDScannerPlugin: parserKey=%@",self.parserKey);
+    NSLog(@"IDScanner: cameraKey=%@",self.cameraKey);
+    NSLog(@"IDScanner: parserKey=%@",self.parserKey);
     [[NSUserDefaults standardUserDefaults] setValue:self.cameraKey forKey:@"cameraKey"];
     [[NSUserDefaults standardUserDefaults] setValue:self.parserKey forKey:@"DriverLicenseParserCurrentSerial"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -31,7 +31,7 @@
     // create scanner controller, set our plugin as a delegate so it can call us with the result.
     ScannerViewController* scannerViewController = [[ScannerViewController alloc] init];
     scannerViewController.delegate = self;
-    NSLog(@"IDScannerPlugin: Starting camera scanner...");
+    NSLog(@"IDScanner: Starting camera scanner...");
     [self.viewController presentViewController:scannerViewController animated:YES completion:nil];
 }
 
@@ -40,19 +40,19 @@
     CDVPluginResult* pluginResult = nil;
 
     if (scanResult != nil){
-        NSLog(@"IDScannerPlugin: Raw scan was returned from camera scanner: %@",scanResult);
-        NSLog(@"IDScannerPlugin: Calling DriverLicenseParser library...");
+        NSLog(@"IDScanner: Raw scan was returned from camera scanner: %@",scanResult);
+        NSLog(@"IDScanner: Calling DriverLicenseParser library...");
         DriverLicense *dl = [[DriverLicense alloc] init];
         if ([dl parseDLString:scanResult hideSerialAlert:NO] == NO){
-            NSLog(@"IDScannerPlugin ERROR: DriverLicenseParser returned nothing");
+            NSLog(@"IDScanner ERROR: DriverLicenseParser returned nothing");
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"DriverLicenseParser error parsing scanned input"];
         }else{
             AudioServicesPlayAlertSoundWithCompletion(kSystemSoundID_Vibrate,nil);
-            NSLog(@"IDScannerPlugin: DriverLicenseParser success, fullName from DL=%@",dl.fullName);
+            NSLog(@"IDScanner: DriverLicenseParser success, fullName from DL=%@",dl.fullName);
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[dl fields]];
         }
     }else{
-        NSLog(@"IDScannerPlugin: Camera scan was cancelled or returned nil");
+        NSLog(@"IDScanner: Camera scan was cancelled or returned nil");
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Camera scan was cancelled or returned nil"];
     }
             

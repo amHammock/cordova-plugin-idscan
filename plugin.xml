@@ -45,7 +45,7 @@
         <info>
           iOS extra steps to make this plugin work:
           
-          You need to add BarcodeScanner.framework to the Embedded Binaries 
+          You *MAY* need to add BarcodeScanner.framework to the Embedded Binaries 
           section of your Xcode project
         </info>
         
@@ -55,15 +55,15 @@
             </feature>
         </config-file>
 
-        <header-file src="src/ios/IDScannerPlugin.h" />
-        <source-file src="src/ios/IDScannerPlugin.m" />
+        <header-file src="src/ios/IDScanner.h" />
+        <source-file src="src/ios/IDScanner.m" />
 
         <header-file src="src/ios/ScannerViewController.h" />
         <source-file src="src/ios/ScannerViewController.m" />
-        <framework src="src/ios/BarcodeScanner.framework" custom="true" />
-
-        <header-file src="src/ios/DriverLicenseParser.h" />
-        <source-file src="src/ios/libDriverLicenseParser.a" framework="true" />
+        
+        <framework src="src/ios/sdk/BarcodeScanner.framework" custom="true" embed="true" />
+        <header-file src="src/ios/sdk/DriverLicenseParser.h" />
+        <source-file src="src/ios/sdk/libDriverLicenseParser.a" framework="true" />
     </platform>
 
 </plugin>

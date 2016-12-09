@@ -1,7 +1,7 @@
 #import <Cordova/CDVPlugin.h>
 #import "ScannerViewController.h"
 
-@interface IDScannerPlugin : CDVPlugin <ScannerViewControllerDelegate>
+@interface IDScanner : CDVPlugin <ScannerViewControllerDelegate>
 {
 	NSString* callbackId;
 	NSString* cameraKey;
