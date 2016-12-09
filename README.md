@@ -26,7 +26,7 @@ Or you can clone the repository locally if you would like to modify the code and
     //
     // You must get valid license keys from IDScan.net for this to work
     //
-    IDScanner.scan(successCallback, errorCallback, cameraKey, scannerKey);
+    IDScanner.scan(successCallback, errorCallback, cameraKey, parserKey);
 
 If you need to update the SDK files from IDScan.net, you can just drop new ones in the sdk folders of the iOS and Android source.
 
