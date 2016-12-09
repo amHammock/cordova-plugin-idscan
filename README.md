@@ -5,11 +5,11 @@ A valid license key is required for both SDKs from IDScan.net for the plugin to 
 
 I wrote this code for my own project for DPM Solutions, Inc (http://dpmsinc.net). I provide it here for anyone to use as a starting point if they have a similar need.
 
-To install, simply clone the repository to a folder on your local machine and use the normal plugin command:
+To install the plugin directly from here, use the Cordova CLI command:
 
-    cordova plugin add /path/to/local/copy/cordova-plugin-idscan
+    cordova plugin add https://github.com/amHammock/cordova-plugin-idscan
 
-The plugin is exposed to your Cordova javascript code as the IDScanner object. Simply call the scan() function like so:
+Or you can clone the repository locally if you would like to modify the code and install from there. The plugin is exposed to your Cordova javascript code as the IDScanner object. Simply call the scan() function like so:
 
     //  
     // for all fields available on the result object, refer to DriverLicenseParser.h in the iOS sdk
