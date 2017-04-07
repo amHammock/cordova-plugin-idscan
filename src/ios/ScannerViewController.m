@@ -200,8 +200,41 @@
 
 - (void) CustomeOverlay
 {
-    [self.view bringSubviewToFront:self.btn];
-    [self.view bringSubviewToFront:self.demoLbl];
+//    [self.view bringSubviewToFront:self.btn];
+//    [self.view bringSubviewToFront:self.demoLbl];
+
+     CGRect bounds = self.view.bounds;
+     bounds = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
+
+     UIView* overlayView = [[UIView alloc] initWithFrame:bounds];
+     overlayView.autoresizesSubviews = YES;
+     overlayView.autoresizingMask    = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+     overlayView.opaque              = NO;
+     UIToolbar* toolbar = [[UIToolbar alloc] init];
+     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+     NSMutableArray *items;
+     id cancelButton = [[UIBarButtonItem alloc]
+                        initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                        target:self
+                        action:@selector(cancelBtn:)
+                        ];
+    id flexSpace = [[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                    target:nil
+                    action:nil
+                    ];
+     items = [@[flexSpace, cancelButton, flexSpace] mutableCopy];
+     toolbar.items = items;
+     bounds = overlayView.bounds;
+     [toolbar sizeToFit];
+     CGFloat toolbarHeight  = [toolbar frame].size.height;
+     CGFloat rootViewHeight = CGRectGetHeight(bounds);
+     CGFloat rootViewWidth  = CGRectGetWidth(bounds);
+     CGRect  rectArea       = CGRectMake(0, rootViewHeight - toolbarHeight, rootViewWidth, toolbarHeight);
+     [toolbar setFrame:rectArea];
+     [overlayView addSubview: toolbar];
+     [self.view addSubview:overlayView];
+
 }
 
 - (void) onVideoStart: (NSNotification*) note
