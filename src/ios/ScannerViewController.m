@@ -216,7 +216,7 @@
      id cancelButton = [[UIBarButtonItem alloc]
                         initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                         target:self
-                        action:@selector(cancelBtn:)
+                        action:@selector(closeBtn:)
                         ];
     id flexSpace = [[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
